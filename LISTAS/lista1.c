@@ -138,3 +138,53 @@ int main() {
     
     return 0;
 }
+
+// EX 04
+// 6. Write a C program to convert a given integer to a Roman number. >
+
+// Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
+// Symbol       Value
+// I             1
+// V             5
+// X             10
+// L             50
+// C             100
+// D             500
+// M             1000
+// Expected Output:
+// Original integer: 12
+// Roman number of the said integer: XII
+
+
+#include <stdio.h>
+
+void intToRoman(int num) {
+    int values[] = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+    char *symbols[] = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+
+    if (num < 1 || num > 3999) {
+        printf("Número fora do intervalo válido (1 a 3999).\n");
+        return;
+    }
+
+    printf("Número romano: ");
+    for (int i = 0; i < 13; i++) {
+        while (num >= values[i]) {
+            printf("%s", symbols[i]);
+            num -= values[i];
+        }
+    }
+    printf("\n");
+}
+
+int main() {
+    int num;
+
+    printf("Digite um número (1 a 3999): ");
+    scanf("%d", &num);
+
+    printf("O número %d em romano fica: ", num);
+    intToRoman(num);
+
+    return 0;
+}
