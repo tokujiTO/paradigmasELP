@@ -264,3 +264,35 @@
 
 // EX 3 - Faça um programa em C que o usuário digite 10 valores que devem ser armazenados em um vetor. Em seguida, deve-se imprimir os 10 valores em ordem decrescente
 
+// Faça um programa em C que o usuário digite 10 valores que devem ser armazenados em um vetor. Em seguida, deve-se imprimir os 10 valores em ordem decrescente
+
+// #include <stdio.h>
+
+// int main(){
+//     int v[10], valor;
+    
+//     for(int i=0; i<10;i++){
+//         printf("numero [%d]", i);
+//         scanf("%d", &valor);
+//         v[i] = valor;
+//     }
+    
+//     for(int i=0; i<9; i++){
+//         for(int j=0; j<9-i; j++){
+//             if (v[j] < v[j+1]){
+//                 int temp = v[j];
+//                 v[j] = v[j+1];
+//                 v[j+1] = temp;
+//             }
+//         }
+//     }
+    
+//     printf("Vetor em ordem decrescente: ");
+//     for(int i=0; i<10; i++)
+//         printf("%d", v[i]);
+    
+    
+    
+//     return 0;
+// }
+
