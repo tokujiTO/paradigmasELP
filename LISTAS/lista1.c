@@ -296,3 +296,97 @@
 //     return 0;
 // }
 
+
+// EX 4 - A gestão de uma empresa mantém um controle dos projetos que deverão ser executados no semestre corrente. Cada projeto possui a seguintes informações: nome do projeto, área do projeto (que pode ser marketing, operacional ou inovação), valor total, data de início prevista, duração em número de meses. Faça um programa em C que implemente o cadastro e a consulta destes projetos.
+// Observação: Usar o conceito de struct para agrupar as informações lidas.
+
+
+#include <stdio.h>
+#include <string.h>
+
+struct Projeto {
+    char nome[50];
+    char area[20];
+    float valor;
+    char dataInicio[11];
+    int duracaoMeses;
+};
+
+void cadastrarProjeto(struct Projeto projetos[], int *quantidade) {
+    if (*quantidade >= 100) {
+        printf("Limite de projetos atingido!\n");
+        return;
+    }
+
+    printf("\nCadastro de Projeto:\n");
+
+    printf("Nome do projeto: ");
+    scanf(" %[^\n]", projetos[*quantidade].nome);
+
+    printf("Área do projeto (marketing, operacional, inovação): ");
+    scanf(" %[^\n]", projetos[*quantidade].area);
+
+    printf("Valor total: ");
+    scanf("%f", &projetos[*quantidade].valor);
+
+    printf("Data de início prevista (DD/MM/AAAA): ");
+    scanf(" %[^\n]", projetos[*quantidade].dataInicio);
+
+    printf("Duração em meses: ");
+    scanf("%d", &projetos[*quantidade].duracaoMeses);
+
+    (*quantidade)++;
+    printf("Projeto cadastrado com sucesso!\n");
+}
+
+void consultarProjetos(struct Projeto projetos[], int quantidade) {
+    if (quantidade == 0) {
+        printf("Nenhum projeto cadastrado.\n");
+        return;
+    }
+
+    printf("\nProjetos cadastrados:\n");
+    for (int i = 0; i < quantidade; i++) {
+        printf("\nProjeto %d:\n", i + 1);
+        printf("Nome: %s\n", projetos[i].nome);
+        printf("Área: %s\n", projetos[i].area);
+        printf("Valor total: R$ %.2f\n", projetos[i].valor);
+        printf("Data de início: %s\n", projetos[i].dataInicio);
+        printf("Duração: %d meses\n", projetos[i].duracaoMeses);
+    }
+}
+
+void menu(int *opcao) {
+    printf("\nMenu:\n");
+    printf("1) Cadastrar projeto\n");
+    printf("2) Consultar projetos\n");
+    printf("3) Sair\n");
+    printf("Escolha uma opção: ");
+    scanf("%d", opcao);
+}
+
+int main() {
+    struct Projeto projetos[100];
+    int quantidade = 0;
+    int opcao;
+
+    do {
+        menu(&opcao);
+
+        switch (opcao) {
+            case 1:
+                cadastrarProjeto(projetos, &quantidade);
+                break;
+            case 2:
+                consultarProjetos(projetos, quantidade);
+                break;
+            case 3:
+                printf("Saindo do programa...\n");
+                break;
+            default:
+                printf("Opção inválida! Tente novamente.\n");
+        }
+    } while (opcao != 3);
+
+    return 0;
+}
